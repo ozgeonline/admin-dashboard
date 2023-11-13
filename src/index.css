@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&display=swap');
+
+:root {
+  --fc-list-event-hover-bg-color: #1F2A4060;
+}
+html, body, #root, .app, .content {
+  height: 100%;
+  width: 100%;
+  font-family:  'Source Sans 3', sans-serif;
+}
+
+.app {
+  display: flex;
+  position: relative;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+  }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #e0e0e0;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #999;
+  border-radius: 5px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.fc .fc-list-sticky .fc-list-day > * {
+  background-color: #1F2A4050 ;
+}
+
+.fc-list-event-hover-bg-color::hover {
+  filter: brightness(1.5);
+}
