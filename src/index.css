@@ -17,6 +17,7 @@ html, body, #root, .app, .content {
 ::-webkit-scrollbar {
   width: 11px;
   }
+  
 
 /* Track */
 ::-webkit-scrollbar-track {
