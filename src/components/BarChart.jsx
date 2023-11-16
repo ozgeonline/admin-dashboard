@@ -9,6 +9,7 @@ const BarChart = ({ isDashboard = false }) => {
 
   return (
     <ResponsiveBar
+      sticky={true}
       data={data}
       theme={{
         // added

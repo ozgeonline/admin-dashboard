@@ -44,10 +44,10 @@ const Invoices = () => {
   ];
 
   return (
-    <Box m="20px" width="79vw" overflow="hidden">
+    <Box m="20px" width="95vw" overflow="hidden">
       <Header title="INVOICES" subtitle="List of Invoices Balances" />
       <Box
-        m="40px 0 0 0"
+        m="0 10px 5px 100px"
         height="75vh"
         sx={{
           "& .MuiDataGrid-root": {

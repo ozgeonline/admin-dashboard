@@ -41,7 +41,7 @@ const Calendar = () => {
   return (
     <Box m="20px">
       <Header title="CALENDAR" subtitle="Full Calendar Interative Page" />
-      <Box display="flex" justifyContent="space-between">
+      <Box display="flex" justifyContent="space-between" m="0 10px 5px 100px">
         {/* Calendar Sidebarl */}
         <Box
           flex="1 1 20%"  //grow-shrink-

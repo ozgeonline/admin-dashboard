@@ -22,7 +22,7 @@ const Dashboard = () => {
     <Box m="20px">
       {/* HEADER */}
       <Box display="flex" justifyContent="space-between" alignItems="center">
-        <Header title="DASHBOARD" subtitle="Welcome to your dashboard" />
+        <Header title="DASHBOARD" subtitle="Welcome to your dashboard"/>
 
         <Box>
           <Button
@@ -32,6 +32,7 @@ const Dashboard = () => {
               fontSize: "11px",
               fontWeight: "bold",
               padding: "10px 20px",
+              letterSpacing: "1px"
             }}
           >
             <DownloadOutlinedIcon sx={{ mr: "10px" }} />
@@ -46,6 +47,7 @@ const Dashboard = () => {
         gridTemplateColumns="repeat(12, 1fr)"
         gridAutoRows="140px"
         gap="20px"
+        sx={{ m: "0 0 5px 100px" }}
       >
         {/* ROW 1 */}
         <Box
