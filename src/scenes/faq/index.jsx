@@ -6,16 +6,19 @@ import AccordionDetails from "@mui/material/AccordionDetails";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { tokens } from "../../theme";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 const FAQ = () => {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
+  const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesMd = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
-    <Box m="20px">
+    <Box m="20px" width="90vw">
       <Header title="FAQ" subtitle="Frequently Asked Questions Page" />
-      <Box m="0 10px 5px 100px">
+      <Box  m={matchesSm  ? "0.5rem" : matchesMd ? "0 10px 5px 70px" : "0 10px 5px 100px"}>
         <Accordion defaultExpanded>
           <AccordionSummary expandIcon={<ExpandMoreIcon />}>
             <Typography color={colors.greenAccent[500]} variant="h5">

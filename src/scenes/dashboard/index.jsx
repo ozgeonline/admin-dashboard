@@ -12,11 +12,14 @@ import GeographyChart from "../../components/GeographyChart";
 import BarChart from "../../components/BarChart";
 import StatBox from "../../components/StatBox";
 import ProgressCircle from "../../components/ProgressCircle";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Dashboard = () => {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesMd = useMediaQuery(theme.breakpoints.down('md'));
 
   return (
     <Box m="20px">
@@ -28,15 +31,20 @@ const Dashboard = () => {
           <Button
             sx={{
               backgroundColor: colors.blueAccent[700],
-              color: colors.grey[100],
+              color: colors.grey[200],
               fontSize: "11px",
               fontWeight: "bold",
-              padding: "10px 20px",
-              letterSpacing: "1px"
+              padding: `${matchesSm ? "4px 8px" : "10px 20px"}`,
+              letterSpacing: "1px",
+              "&:hover": {
+                backgroundColor: colors.blueAccent[500]
+              }
             }}
           >
-            <DownloadOutlinedIcon sx={{ mr: "10px" }} />
-            Download Reports
+            <DownloadOutlinedIcon sx={{ mr: "10px", color:"#eee"}} />
+              <Typography sx={{fontSize:".7rem", color: "#eee"}}>
+              {matchesSm ? "Download" : "Download Reports"}
+              </Typography>
           </Button>
         </Box>
       </Box>
@@ -47,15 +55,18 @@ const Dashboard = () => {
         gridTemplateColumns="repeat(12, 1fr)"
         gridAutoRows="140px"
         gap="20px"
-        sx={{ m: "0 0 5px 100px" }}
+        m={(matchesSm && matchesMd) ? "0 0 5px 10px" : "0 0 5px 100px"}
+        // sx={{ m: "0 0 5px 100px" }}
+       
       >
         {/* ROW 1 */}
         <Box
-          gridColumn="span 3"
+          gridColumn={matchesSm || matchesMd ? "span 12" : "span 3"}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
           justifyContent="center"
+          borderRadius="5px"
         >
           <StatBox
             title="12,361"
@@ -64,17 +75,18 @@ const Dashboard = () => {
             increase="+14%"
             icon={
               <EmailIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "22px" }}
+                sx={{ color: colors.greenAccent[500], fontSize: "22px" }}
               />
             }
           />
         </Box>
         <Box
-          gridColumn="span 3"
+          gridColumn={matchesSm || matchesMd ? "span 12" : "span 3"}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
           justifyContent="center"
+          borderRadius="5px"
         >
           <StatBox
             title="431,225"
@@ -83,17 +95,18 @@ const Dashboard = () => {
             increase="+21%"
             icon={
               <PointOfSaleIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "22px" }}
+                sx={{ color: colors.greenAccent[500], fontSize: "22px" }}
               />
             }
           />
         </Box>
         <Box
-          gridColumn="span 3"
+          gridColumn={matchesSm || matchesMd ? "span 12" : "span 3"}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
           justifyContent="center"
+          borderRadius="5px"
         >
           <StatBox
             title="32,441"
@@ -102,17 +115,18 @@ const Dashboard = () => {
             increase="+5%"
             icon={
               <PersonAddIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "22px" }}
+                sx={{ color: colors.greenAccent[500], fontSize: "22px" }}
               />
             }
           />
         </Box>
         <Box
-          gridColumn="span 3"
+          gridColumn={matchesSm || matchesMd ? "span 12" : "span 3"}
           backgroundColor={colors.primary[400]}
           display="flex"
           alignItems="center"
           justifyContent="center"
+          borderRadius="5px"
         >
           <StatBox
             title="1,325,134"
@@ -121,7 +135,7 @@ const Dashboard = () => {
             increase="+43%"
             icon={
               <TrafficIcon
-                sx={{ color: colors.greenAccent[600], fontSize: "22px" }}
+                sx={{ color: colors.greenAccent[500], fontSize: "22px" }}
               />
             }
           />
@@ -129,9 +143,10 @@ const Dashboard = () => {
 
         {/* ROW 2 */}
         <Box
-          gridColumn="span 8"
+          gridColumn={matchesSm || matchesMd ? "span 12" : "span 8"}
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
+          borderRadius="5px"
         >
           <Box
             mt="25px"
@@ -139,6 +154,7 @@ const Dashboard = () => {
             display="flex "
             justifyContent="space-between"
             alignItems="center"
+            borderRadius="5px"
           >
             <Box>
               <Typography
@@ -171,10 +187,11 @@ const Dashboard = () => {
 
         {/* TRANSACTIONS */}
         <Box
-          gridColumn="span 4"
+          gridColumn={matchesSm || matchesMd ? "span 12" : "span 4"}
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           overflow="auto"
+          borderRadius="5px"
         >
           <Box
             display="flex"
@@ -214,6 +231,7 @@ const Dashboard = () => {
                 backgroundColor={colors.greenAccent[500]}
                 p="5px 10px"
                 borderRadius="4px"
+                color="#eee"
               >
                 ${transaction.cost}
               </Box>
@@ -223,12 +241,14 @@ const Dashboard = () => {
 
         {/* ROW 3 */}
         <Box
-          gridColumn="span 4"
+          gridColumn={matchesSm || matchesMd ? "span 12" : "span 4"}
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           p="30px"
+          marginBottom="1rem"
+          borderRadius="5px"
         >
-          <Typography variant="h5" fontWeight="600">
+          <Typography variant="h5" fontWeight="600" color={colors.grey[100]}>
             Campaign
           </Typography>
           <Box
@@ -237,7 +257,7 @@ const Dashboard = () => {
             alignItems="center"
             mt="25px"
           >
-            <ProgressCircle size="125" />
+            <ProgressCircle size="100" />
             <Typography
               variant="h5"
               color={colors.greenAccent[500]}
@@ -249,14 +269,17 @@ const Dashboard = () => {
           </Box>
         </Box>
         <Box
-          gridColumn="span 4"
+          gridColumn={matchesSm || matchesMd ? "span 12" : "span 4"}
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
+          borderRadius="5px"
+          marginBottom="1rem"
         >
           <Typography
             variant="h5"
             fontWeight="600"
             sx={{ padding: "30px 30px 0 30px" }}
+            color={colors.grey[100]}
           >
             Sales Quantity
           </Typography>
@@ -265,15 +288,18 @@ const Dashboard = () => {
           </Box>
         </Box>
         <Box
-          gridColumn="span 4"
+          gridColumn={matchesSm || matchesMd ? "span 12" : "span 4"}
           gridRow="span 2"
           backgroundColor={colors.primary[400]}
           padding="30px"
+          marginBottom="1rem"
+          borderRadius="5px"
         >
           <Typography
             variant="h5"
             fontWeight="600"
             sx={{ marginBottom: "15px" }}
+            color={colors.grey[100]}
           >
             Geography Based Traffic
           </Typography>

@@ -2,6 +2,8 @@ import { ResponsiveLine } from "@nivo/line";
 import { useTheme } from "@mui/material";
 import { tokens } from "../theme";
 import { mockLineData as data } from "../data/mockData";
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 
 import React from 'react'
 
@@ -9,6 +11,7 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
 
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <ResponsiveLine
@@ -27,11 +30,11 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
             },
             ticks: {
               line: {
-                stroke: colors.grey[100],
+                stroke: `${matchesSm ? "transparent" : colors.grey[100]}`,
                 strokeWidth: 1,
               },
               text: {
-                fill: colors.grey[100],
+                fill: `${matchesSm ? "transparent" : colors.grey[100]}`,
               },
             },
           },
@@ -45,8 +48,13 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
               color: colors.primary[500],
             },
           },
+          tooltip: {
+            container: {
+                color: colors.grey[300]
+            }
+          }
         }}
-        colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }} // added
+        colors={isDashboard ? { datum: "color" } : { scheme: "nivo" }}
         margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
         xScale={{ type: 'point' }}
         yScale={{
@@ -57,41 +65,38 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
             reverse: false
         }}
         yFormat=" >-.2f"
-        curve="catmullRom"
         axisTop={null}
         axisRight={null}
         axisBottom={{
-            // orient: "bottom",
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: isDashboard ? undefined : 'transportation',
+            legend: 'transportation',
             legendOffset: 36,
             legendPosition: 'middle'
         }}
         axisLeft={{
-            // orient: "left",
-            tickValues:5, //added
+            tickValues:5,
             tickSize: 5,
             tickPadding: 5,
             tickRotation: 0,
-            legend: isDashboard ? undefined :  'count',
+            legend: 'count',
             legendOffset: -40,
             legendPosition: 'middle'
         }}
         enableGridX={false}
-        pointSize={10}
+        enableGridY={false}
         pointColor={{ theme: 'background' }}
         pointBorderWidth={2}
         pointBorderColor={{ from: 'serieColor' }}
         pointLabelYOffset={-12}
         useMesh={true}
-        legends={[
+        legends= {[
             {
                 anchor: 'bottom-right',
                 direction: 'column',
                 justify: false,
-                translateX: 100,
+                translateX: 104,
                 translateY: 0,
                 itemsSpacing: 0,
                 itemDirection: 'left-to-right',

@@ -85,7 +85,7 @@ export const mockDataContacts = [
     address: "0912 Won Street, Alabama, SY 10001",
     city: "New York",
     zipCode: "10001",
-    registrarId: 123512,
+    registrarId: 12351,
   },
   {
     id: 2,
@@ -96,7 +96,7 @@ export const mockDataContacts = [
     address: "1234 Main Street, New York, NY 10001",
     city: "New York",
     zipCode: "13151",
-    registrarId: 123512,
+    registrarId: 12351,
   },
   {
     id: 3,
@@ -107,7 +107,7 @@ export const mockDataContacts = [
     address: "3333 Want Blvd, Estanza, NAY 42125",
     city: "New York",
     zipCode: "87281",
-    registrarId: 4132513,
+    registrarId: 41325,
   },
   {
     id: 4,
@@ -118,7 +118,7 @@ export const mockDataContacts = [
     address: "1514 Main Street, New York, NY 22298",
     city: "New York",
     zipCode: "15551",
-    registrarId: 123512,
+    registrarId: 12351,
   },
   {
     id: 5,
@@ -129,18 +129,18 @@ export const mockDataContacts = [
     address: "11122 Welping Ave, Tenting, CD 21321",
     city: "Tenting",
     zipCode: "14215",
-    registrarId: 123512,
+    registrarId: 12312,
   },
   {
     id: 6,
     name: "Ever Melisandre",
     email: "evermelisandre@gmail.com",
-    age: 150,
+    age: 50,
     phone: "(232)545-6483",
     address: "1234 Canvile Street, Esvazark, NY 10001",
     city: "Esvazark",
     zipCode: "10001",
-    registrarId: 123512,
+    registrarId: 12312,
   },
   {
     id: 7,
@@ -151,7 +151,7 @@ export const mockDataContacts = [
     address: "22215 Super Street, Everting, ZO 515234",
     city: "Evertin",
     zipCode: "51523",
-    registrarId: 123512,
+    registrarId: 23512,
   },
   {
     id: 8,
@@ -162,7 +162,7 @@ export const mockDataContacts = [
     address: "4123 Ever Blvd, Wentington, AD 142213",
     city: "Esteras",
     zipCode: "44215",
-    registrarId: 512315,
+    registrarId: 51215,
   },
   {
     id: 9,
@@ -173,7 +173,7 @@ export const mockDataContacts = [
     address: "51234 Avery Street, Cantory, ND 212412",
     city: "Colunza",
     zipCode: "111234",
-    registrarId: 928397,
+    registrarId: 98397,
   },
   {
     id: 10,
@@ -184,7 +184,7 @@ export const mockDataContacts = [
     address: "4123 Easer Blvd, Wentington, AD 142213",
     city: "Esteras",
     zipCode: "44215",
-    registrarId: 533215,
+    registrarId: 53215,
   },
   {
     id: 11,
@@ -270,37 +270,37 @@ export const mockTransactions = [
   {
     txId: "01e4dsa",
     user: "johndoe",
-    date: "2021-09-01",
+    date: "2023-09-01",
     cost: "43.95",
   },
   {
     txId: "0315dsaa",
     user: "jackdower",
-    date: "2022-04-01",
+    date: "2023-04-01",
     cost: "133.45",
   },
   {
     txId: "01e4dsa",
     user: "aberdohnny",
-    date: "2021-09-01",
+    date: "2023-09-01",
     cost: "43.95",
   },
   {
     txId: "51034szv",
     user: "goodmanave",
-    date: "2022-11-05",
+    date: "2023-11-05",
     cost: "200.95",
   },
   {
     txId: "0a123sb",
     user: "stevebower",
-    date: "2022-11-02",
+    date: "2023-11-02",
     cost: "13.55",
   },
   {
     txId: "01e4dsa",
     user: "aberdohnny",
-    date: "2021-09-01",
+    date: "2023-09-01",
     cost: "43.95",
   },
   {

@@ -37,6 +37,11 @@ const GeographyChart = ({ isDashboard = false }) => {
             fill: colors.grey[100],
           },
         },
+        tooltip: {
+          container: {
+              color: colors.grey[300]
+          }
+        }
       }}
       features={geoFeatures.features}
       margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
@@ -50,14 +55,13 @@ const GeographyChart = ({ isDashboard = false }) => {
       borderWidth={1.5}
       borderColor="#ffffff"
       legends={
-        !isDashboard
-          ? [
+         [
               {
                 anchor: "bottom-left",
                 direction: "column",
                 justify: true,
-                translateX: 20,
-                translateY: -100,
+                translateX: 90,
+                translateY: -70,
                 itemsSpacing: 0,
                 itemWidth: 94,
                 itemHeight: 18,
@@ -76,7 +80,6 @@ const GeographyChart = ({ isDashboard = false }) => {
                 ],
               },
             ]
-          : undefined
       }
     />
   );

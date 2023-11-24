@@ -3,13 +3,16 @@ import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataInvoices } from "../../data/mockData";
 import Header from "../../components/Header";
-
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Invoices = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesMd = useMediaQuery(theme.breakpoints.down('md'));
+
   const columns = [
-    { field: "id", headerName: "ID" },
+    { field: "id", headerName: "ID", flex: 0.2},
     {
       field: "name",
       headerName: "Name",
@@ -47,7 +50,7 @@ const Invoices = () => {
     <Box m="20px" width="95vw" overflow="hidden">
       <Header title="INVOICES" subtitle="List of Invoices Balances" />
       <Box
-        m="0 10px 5px 100px"
+        m={matchesSm || matchesMd ? "0.5rem" : "0 10px 5px 100px"}
         height="75vh"
         sx={{
           "& .MuiDataGrid-root": {
@@ -58,6 +61,7 @@ const Invoices = () => {
           },
           "& .name-column--cell": {
             color: colors.greenAccent[400],
+            fontWeight: "600"
           },
           "& .MuiDataGrid-columnHeaders": {
             backgroundColor: colors.primary[400],

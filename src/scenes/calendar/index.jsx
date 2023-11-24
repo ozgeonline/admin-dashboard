@@ -9,11 +9,16 @@ import listPlugin from "@fullcalendar/list";
 import { Box, List, ListItem, ListItemText, Typography, useTheme, } from "@mui/material";
 import Header from "../../components/Header";
 import { tokens } from "../../theme";
+import useMediaQuery from '@mui/material/useMediaQuery';
+
 import '../../../src/index.css'
 
 const Calendar = () => {
   const theme = useTheme()
   const colors = tokens(theme.palette.mode)
+  const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
+  const matchesMd = useMediaQuery(theme.breakpoints.down('md'));
+
   const [currentEvents, setCurrentEvents] = useState([])
 
   const handleDateClick = (selected) => {
@@ -41,13 +46,19 @@ const Calendar = () => {
   return (
     <Box m="20px">
       <Header title="CALENDAR" subtitle="Full Calendar Interative Page" />
-      <Box display="flex" justifyContent="space-between" m="0 10px 5px 100px">
-        {/* Calendar Sidebarl */}
+      <Box 
+        display="flex" 
+        justifyContent="space-between"  
+        m={matchesSm || matchesMd ? "0.5rem" : "0 10px 5px 70px"}
+      >
+        {/* Calendar Sidebar */}
         <Box
           flex="1 1 20%"  //grow-shrink-
           backgroundColor={colors.primary[400]}
           p="15px"
           borderRadius="4px"
+          display={matchesSm || matchesMd ? "none" : "block"}
+         
         >
           <Typography variant='h5'>Events</Typography>
           <List>
@@ -57,7 +68,8 @@ const Calendar = () => {
                 sx={{
                   backgroundColor: colors.greenAccent[500],
                   margin: "10px 0",
-                  borderRadius: "2px"
+                  borderRadius: "2px",
+                  color: "ButtonFace"
                 }}
               >
                 <ListItemText 
@@ -78,9 +90,14 @@ const Calendar = () => {
         </Box>
 
         {/* CALENDAR */}
-        <Box flex="1 1 100%" ml="15px">
+        <Box 
+          flex="1 1 100%" 
+          fontSize={matchesSm || matchesMd ? "0.5rem" : "0.9rem"}
+          m={matchesSm  ? "0.5rem" : matchesMd ? "0 0 0 100px" : "0 10px 5px 30px"}
+          >
           <FullCalendar 
             height="75vh"
+            dayMinWidth={matchesSm || matchesMd ? "22rem" : "auto"}
             plugins={[
               dayGridPlugin,
               timeGridPlugin,

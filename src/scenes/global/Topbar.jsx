@@ -8,7 +8,21 @@ import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import SearchIcon from "@mui/icons-material/Search";
 import { tokens, ColorModeContext } from '../../theme';
+import { Link } from 'react-router-dom';
 
+// const Item = ({ title, to, icon, selected, setSelected }) => {
+  
+//   return (
+//     <MenuItem
+//       active={selected === title}
+//       onClick={() => setSelected(title) }
+//       icon={icon}
+//     >
+//       <Typography>{title}</Typography>
+//       <Link to={to}  />
+//     </MenuItem>
+//   );
+// };
 
 const Topbar = () => {
   const theme = useTheme()
@@ -39,17 +53,23 @@ const Topbar = () => {
           }
         </IconButton>
 
+      <Link to="/faq">
         <IconButton>
           <NotificationsOutlinedIcon />
         </IconButton>
+      </Link>
 
+      <Link to="/calendar">
         <IconButton>
           <SettingsOutlinedIcon />
         </IconButton>
+      </Link>
 
+      <Link to="/form">
         <IconButton>
           <PersonOutlinedIcon />
         </IconButton>
+      </Link>
 
       </Box>
     </Box>

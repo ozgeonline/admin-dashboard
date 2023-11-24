@@ -49,7 +49,7 @@ const Form = () => {
               display="grid"
               gap="30px"
               gridTemplateColumns="repeat(4, minmax(0, 1fr))"
-              m="0 10px 5px 100px"
+              m={!isNonMobile ? "0.5rem" : "0 10px 5px 100px"}
               sx={{
                 "& > div": { gridColumn: isNonMobile ? undefined : "span 4" },
               }}
@@ -134,7 +134,7 @@ const Form = () => {
               />
             </Box>
             <Box display="flex" justifyContent="end" mt="20px">
-              <Button type="submit" color="secondary" variant="contained">
+              <Button type="submit" color="error" variant="contained">
                 Create New User
               </Button>
             </Box>
