@@ -77,15 +77,16 @@ const Team = () => {
     },
     {
       field: "access",
-      headerName: "Access Level",
+      headerName: `${matchesSm ? "Level" : "Access Level"}`,
       headerAlign: "center",
-      flex: 1,
+      align: "center",
+      flex: 0.6,
       renderCell: ({ row: { access } }) => {
         return (
           <Box
             width="50%"
             m="0 auto"
-            p="5px"
+            p="3px"
             display="flex"
             justifyContent="center"
             backgroundColor={
