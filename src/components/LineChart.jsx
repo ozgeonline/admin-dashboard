@@ -45,11 +45,6 @@ const LineChart = ({ isCustomLineColors = false, isDashboard = false }) => {
           },
           tooltip: {
             container: {
-              color: colors.primary[500],
-            },
-          },
-          tooltip: {
-            container: {
                 color: colors.grey[300]
             }
           }

@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -8,49 +10,76 @@ import SecurityOutlinedIcon from "@mui/icons-material/SecurityOutlined";
 import Header from "../../components/Header";
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-
 const Team = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
   const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
   const matchesMd = useMediaQuery(theme.breakpoints.down('md'));
+
+  const mobilColumns = {
+    id: true,
+    name: true,
+    age: false,
+    phone: false,
+    email: false,
+    access: true
+  }
+
+  const allColumns = {
+    id: true,
+    name: true,
+    age: true,
+    phone: true,
+    email: true,
+    access: true
+  }
+
+  const [columnVisible, setColumnVisible] = useState(allColumns);
+
+  useEffect(() => {
+    const newColumns = matchesSm || matchesMd ? mobilColumns : allColumns;
+    setColumnVisible(newColumns);
+  }, [matchesSm,matchesMd]);
   
 
   const columns = [
     { 
       field: "id", 
       headerName: "ID" ,
-      flex:0.3},
+      flex:0.2
+    },
     {
       field: "name",
       headerName: "Name",
-      flex: 0.7,
+      flex: 0.6,
       cellClassName: "name-column--cell",
     },
     {
-      field: `${matchesSm ? false : "age"}`,
+      field: "age",
       headerName: "Age",
       type: "number",
       headerAlign: "left",
       align: "left",
-      flex:0.3,
-      
+      flex:0.4,
+      cellClassName: "age-column--cell",
     },
     {
       field: "phone",
       headerName: "Phone Number",
       flex: 0.7,
+      cellClassName: "phone-column--cell"
     },
     {
       field: "email",
       headerName: "Email",
       flex: 0.7,
+      cellClassName: "email-column--cell"
     },
     {
       field: "access",
       headerName: "Access Level",
       headerAlign: "center",
-      flex: 1.4,
+      flex: 1,
       renderCell: ({ row: { access } }) => {
         return (
           <Box
@@ -72,8 +101,8 @@ const Team = () => {
             {access === "admin" && <AdminPanelSettingsOutlinedIcon />}
             {access === "manager" && <SecurityOutlinedIcon />}
             {access === "user" && <LockOpenOutlinedIcon />}
-            <Typography color="whitesmoke" sx={{ ml: "5px" }}>
-              {matchesSm ? "" : access}
+            <Typography color="whitesmoke" >
+              {matchesSm || matchesMd ? "" : access}
             </Typography>
           </Box>
         );
@@ -85,7 +114,7 @@ const Team = () => {
     <Box m="20px" width="95vw" overflow="hidden"> 
       <Header title="TEAM" subtitle="Managing the Team Members" />
       <Box
-        m={matchesSm || matchesMd ? "0.5rem" : "0 10px 5px 100px"}
+        m={matchesSm ? "0.5rem" : "0 10px 5px 90px"}
         height="75vh"
         width="90vw"
         sx={{
@@ -115,7 +144,7 @@ const Team = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} />
+        <DataGrid checkboxSelection rows={mockDataTeam} columns={columns} columnVisibilityModel={columnVisible}/>
       </Box>
     </Box>
   );

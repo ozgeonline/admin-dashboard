@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import { Box, Typography, useTheme } from "@mui/material";
 import { DataGrid } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
@@ -10,6 +12,31 @@ const Invoices = () => {
   const colors = tokens(theme.palette.mode);
   const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
   const matchesMd = useMediaQuery(theme.breakpoints.down('md'));
+
+  const mobilColumns = {
+    id: true,
+    name: true,
+    phone: false,
+    email: false,
+    cost: true,
+    date:true
+  }
+
+  const allColumns = {
+    id: true,
+    name: true,
+    phone: true,
+    email: true,
+    cost: true,
+    date:true
+  }
+
+  const [columnVisible, setColumnVisible] = useState(allColumns);
+
+  useEffect(() => {
+    const newColumns = matchesSm || matchesMd ? mobilColumns : allColumns;
+    setColumnVisible(newColumns);
+  }, [matchesSm,matchesMd]);
 
   const columns = [
     { field: "id", headerName: "ID", flex: 0.2},
@@ -32,7 +59,7 @@ const Invoices = () => {
     {
       field: "cost",
       headerName: "Cost",
-      flex: 0.7,
+      flex: 0.6,
       renderCell: (params) => (
         <Typography color={colors.greenAccent[500]}>
           ${params.row.cost}
@@ -42,7 +69,7 @@ const Invoices = () => {
     {
       field: "date",
       headerName: "Date",
-      flex: 0.7
+      flex: 0.6
     },
   ];
 
@@ -50,7 +77,7 @@ const Invoices = () => {
     <Box m="20px" width="95vw" overflow="hidden">
       <Header title="INVOICES" subtitle="List of Invoices Balances" />
       <Box
-        m={matchesSm || matchesMd ? "0.5rem" : "0 10px 5px 100px"}
+        m={matchesSm ? "0.3rem" : "0 10px 5px 90px"}
         height="75vh"
         sx={{
           "& .MuiDataGrid-root": {
@@ -79,7 +106,7 @@ const Invoices = () => {
           },
         }}
       >
-        <DataGrid checkboxSelection rows={mockDataInvoices} columns={columns} />
+        <DataGrid checkboxSelection rows={mockDataInvoices} columns={columns} columnVisibilityModel={columnVisible}/>
       </Box>
     </Box>
   );

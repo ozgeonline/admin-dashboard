@@ -1,9 +1,11 @@
+import { useState } from "react";
+import { useEffect } from "react";
 import { Box } from "@mui/material";
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../theme";
 import { mockDataContacts } from "../../data/mockData";
-import Header from "../../components/Header";
 import { useTheme } from "@emotion/react";
+import Header from "../../components/Header";
 import useMediaQuery from '@mui/material/useMediaQuery';
 
 const Contacts = () => {
@@ -12,17 +14,48 @@ const Contacts = () => {
   const matchesSm = useMediaQuery(theme.breakpoints.down('sm'));
   const matchesMd = useMediaQuery(theme.breakpoints.down('md'));
 
+  const mobilColumns = {
+    id: true,
+    registrarId:false,
+    name: true,
+    age: false,
+    phone: false,
+    city: true,
+    email: false,
+    address:false,
+    zipCode: true
+  }
+
+  const allColumns = {
+    id: true,
+    registrarId:true,
+    name: true,
+    age: true,
+    phone: true,
+    city: true,
+    email: true,
+    address:true,
+    zipCode: true
+  }
+
+  const [columnVisible, setColumnVisible] = useState(allColumns);
+
+  useEffect(() => {
+    const newColumns = matchesSm || matchesMd ? mobilColumns : allColumns;
+    setColumnVisible(newColumns);
+  }, [matchesSm,matchesMd]);
+
   const columns = [
     { field: "id", headerName: "ID" ,flex:0.3},
     { field: "registrarId", headerName: "Registrar ID", flex:0.5},
     {
       field: "name",
       headerName: "Name",
-      flex: 1,
+      flex: 0.7,
       cellClassName: "name-column--cell",
     },
     {
-      field: `${matchesSm ? false : "age"}`,
+      field: "age",
       headerName: "Age",
       type: "number",
       headerAlign: "left",
@@ -37,22 +70,22 @@ const Contacts = () => {
     {
       field: "city",
       headerName: "City",
-      flex: 0.7,
+      flex: 0.5,
     },
     {
-      field: `${matchesSm ? false : "email"}`,
+      field: "email",
       headerName: "Email",
       flex: 0.7,
     },
     {
-      field: `${matchesSm ? false : "address"}`,
+      field: "address",
       headerName: "Address",
       flex: 0.7
     },
     {
-      field: `${matchesSm ? false : "zipCode"}`,
-      headerName: "ZipCode",
-      flex: 0.3
+      field: "zipCode",
+      headerName: `${matchesSm ? "Zip" : "ZipCode"}`,
+      flex: 0.4
     }
   ];
 
@@ -60,7 +93,7 @@ const Contacts = () => {
     <Box m="20px" width="95vw" overflow="hidden">
       <Header title="CONTACTS" subtitle="List of Contacts for Future Reference" />
       <Box
-        m={matchesSm || matchesMd ? "0.5rem" : "0 10px 5px 100px"}
+        m={matchesSm ? "0.5rem" : "0 10px 5px 90px"}
         height="75vh"
         width="90vw"
         sx={{
@@ -96,7 +129,7 @@ const Contacts = () => {
           },
         }}
       >
-        <DataGrid slots={{ toolbar: GridToolbar }} rows={mockDataContacts} columns={columns} />
+        <DataGrid slots={{ toolbar: GridToolbar }} rows={mockDataContacts} columns={columns} columnVisibilityModel={columnVisible}/>
       </Box>
     </Box>
   );
